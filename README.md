@@ -1,7 +1,7 @@
 TODOS
 
-- [ ] Routing
-- [ ] Database integration
+- [x] Routing
+- [x] Database integration
 - [ ] User authentication - Register
 - [ ] User authentication - Login
 - [ ] User authentication - Logout
