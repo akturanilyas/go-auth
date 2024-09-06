@@ -1,4 +1,4 @@
-package authcontroller
+package authController
 
 import "github.com/gofiber/fiber/v2"
 
