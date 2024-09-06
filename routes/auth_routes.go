@@ -2,7 +2,7 @@ package routes
 
 import (
 	authController "go-test/controllers"
-	"go-test/enums"
+	endpoints "go-test/enums"
 	"go-test/types"
 	"net/http"
 )
@@ -10,12 +10,12 @@ import (
 var AuthRoutes = []types.Route{
 	{
 		Method:  http.MethodGet,
-		Path:    enums.Login,
+		Path:    endpoints.Login,
 		Handler: authController.Login,
 	},
 	{
 		Method:  http.MethodPost,
-		Path:    enums.Register,
+		Path:    endpoints.Register,
 		Handler: authController.Register,
 	},
 }

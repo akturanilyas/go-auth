@@ -7,5 +7,10 @@ func Login(c *fiber.Ctx) error {
 }
 
 func Register(c *fiber.Ctx) error {
-	return c.SendString("Registers")
+	response := fiber.Map{
+		"status":  "success",
+		"message": "User registered successfully",
+	}
+
+	return c.Status(fiber.StatusCreated).JSON(response)
 }

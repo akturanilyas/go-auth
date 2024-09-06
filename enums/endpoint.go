@@ -1,4 +1,4 @@
-package enums
+package endpoints
 
 const (
 	Login    string = "/login"
