@@ -1,6 +1,8 @@
-package commonUtils
+package utils
 
-import "os"
+import (
+	"os"
+)
 
 const (
 	EnvPort       string = "PORT"

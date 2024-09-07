@@ -1,6 +1,8 @@
-package endpoints
+package enums
+
+type Endpoint string
 
 const (
-	Login    string = "/login"
-	Register string = "/register"
+	Login    Endpoint = "/login"
+	Register Endpoint = "/register"
 )
