@@ -1,11 +1,9 @@
-package authController
+package auth
 
 import (
 	"github.com/go-playground/validator/v10"
 	"github.com/gofiber/fiber/v2"
-	"go-test/services/authservice"
-	"go-test/types"
-	"go-test/validations"
+	"go-test/pkg/abstract"
 )
 
 var Validate = validator.New()
@@ -15,11 +13,11 @@ func Login(c *fiber.Ctx) error {
 }
 
 func Register(c *fiber.Ctx) error {
-	myValidator := &types.XValidator{
+	myValidator := &abstract.XValidator{
 		Validator: Validate,
 	}
 
-	user := &validations.CreateUserValidation{
+	user := &CreateUserValidation{
 		Name:     c.Query("name"),
 		Password: c.Query("password"),
 	}
@@ -33,7 +31,7 @@ func Register(c *fiber.Ctx) error {
 		})
 	}
 
-	response := authservice.Register(user)
+	response := RegisterService(user)
 
 	return c.Status(fiber.StatusCreated).JSON(response)
 }

@@ -1,8 +1,8 @@
-package validations
+package abstract
 
 import "github.com/go-playground/validator/v10"
 
-type AbstractValidation struct {
+type (
 	ErrorResponse struct {
 		Error       bool
 		FailedField string
@@ -11,11 +11,11 @@ type AbstractValidation struct {
 	}
 
 	XValidator struct {
-		validator *validator.Validate
+		Validator *validator.Validate
 	}
 
 	GlobalErrorHandlerResp struct {
 		Success bool   `json:"success"`
 		Message string `json:"message"`
 	}
-}
+)

@@ -1,25 +1,23 @@
-package authservice
+package auth
 
 import (
-	"go-test/models"
-	"go-test/validations"
+	"go-test/pkg/user"
 	"golang.org/x/crypto/bcrypt"
 	"gorm.io/gorm"
 )
 
 type User struct {
-	*models.User
+	*user.User
 }
 
 var db *gorm.DB
 
 func SetDBConnection(conn *gorm.DB) {
-
 	db = conn
 }
 
-func Register(user *validations.CreateUserValidation) *gorm.DB {
-	record := models.User{Name: user.Name}
+func RegisterService(_userData *CreateUserValidation) *gorm.DB {
+	record := user.User{Name: _userData.Name}
 
 	result := db.Create(&record)
 

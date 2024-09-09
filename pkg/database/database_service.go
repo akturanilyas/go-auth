@@ -1,8 +1,8 @@
-package databaseservice
+package database
 
 import (
 	"fmt"
-	commonUtils "go-test/utils"
+	"go-test/utils"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 	"gorm.io/gorm/logger"
@@ -11,11 +11,11 @@ import (
 func getMySQLDatabaseConnection() (*gorm.DB, error) {
 	// TODO: Move to config
 	dsn := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s",
-		commonUtils.GetEnvValue(commonUtils.MysqlUsername),
-		commonUtils.GetEnvValue(commonUtils.MysqlPassword),
-		commonUtils.GetEnvValue(commonUtils.MysqlHost),
-		commonUtils.GetEnvValue(commonUtils.MysqlPort),
-		commonUtils.GetEnvValue(commonUtils.MysqlDatabase),
+		utils.GetEnvValue(utils.MysqlUsername),
+		utils.GetEnvValue(utils.MysqlPassword),
+		utils.GetEnvValue(utils.MysqlHost),
+		utils.GetEnvValue(utils.MysqlPort),
+		utils.GetEnvValue(utils.MysqlDatabase),
 	)
 
 	fmt.Println(dsn)
