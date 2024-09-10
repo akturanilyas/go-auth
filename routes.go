@@ -1,12 +1,13 @@
-package route
+package main
 
 import (
 	"go-test/enums"
 	"go-test/pkg/auth"
+	"go-test/pkg/route"
 	"net/http"
 )
 
-var Routes = []Route{
+var Routes = []route.Route{
 	{
 		Method:  http.MethodPost,
 		Path:    enums.Login,

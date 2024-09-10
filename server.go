@@ -31,9 +31,9 @@ func main() {
 		log.Fatal("Failed to migrate database: ", err)
 	}
 
-	println(conn)
 	auth.SetDBConnection(conn)
 
+	route.SetRoutes(Routes)
 	route.BuildRoutes(app)
 
 	if err := app.Listen(":3000"); err != nil {

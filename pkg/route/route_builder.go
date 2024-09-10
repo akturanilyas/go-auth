@@ -4,9 +4,14 @@ import (
 	"github.com/gofiber/fiber/v2"
 )
 
+var routes []Route
+
+func SetRoutes(_route []Route) {
+	routes = _route
+}
+
 func BuildRoutes(app *fiber.App) {
-	// TODO for now
-	for _, route := range Routes {
+	for _, route := range routes {
 		app.Add(route.Method, string(route.Path), route.Handler)
 	}
 }
