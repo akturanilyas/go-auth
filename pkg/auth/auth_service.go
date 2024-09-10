@@ -16,12 +16,17 @@ func SetDBConnection(conn *gorm.DB) {
 	db = conn
 }
 
-func RegisterService(_userData *CreateUserValidation) *gorm.DB {
-	record := user.User{Name: _userData.Name}
+func RegisterService(_userData *CreateUserValidation) user.User {
+	record := user.User{
+		FirstName: _userData.FirstName,
+		LastName:  _userData.LastName,
+		Email:     _userData.Email,
+		Password:  _userData.Password,
+	}
 
-	result := db.Create(&record)
+	db.Create(&record)
 
-	return result
+	return record
 }
 
 func (u *User) hashPassword(password string) error {

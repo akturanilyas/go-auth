@@ -18,8 +18,10 @@ func Register(c *fiber.Ctx) error {
 	}
 
 	user := &CreateUserValidation{
-		Name:     c.Query("name"),
-		Password: c.Query("password"),
+		FirstName: c.Query("first_name"),
+		LastName:  c.Query("last_name"),
+		Email:     c.Query("email"),
+		Password:  c.Query("password"),
 	}
 
 	// TODO validate user input better way
