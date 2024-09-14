@@ -1,12 +1,18 @@
 package database
 
 import (
+	"auth-go/utils"
 	"fmt"
-	"go-test/utils"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 	"gorm.io/gorm/logger"
 )
+
+var DB *gorm.DB
+
+func SetDBConnection(conn *gorm.DB) {
+	DB = conn
+}
 
 func getMySQLDatabaseConnection() (*gorm.DB, error) {
 	// TODO: Move to config

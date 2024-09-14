@@ -2,8 +2,12 @@
 package utils
 
 import (
-	"github.com/dgrijalva/jwt-go"
+	"crypto/rand"
+	"encoding/hex"
+	"errors"
 	"time"
+
+	"github.com/dgrijalva/jwt-go"
 )
 
 var jwtKey = []byte("your_secret_key")
@@ -23,4 +27,18 @@ func GenerateJWT(email string) (string, error) {
 	}
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
 	return token.SignedString(jwtKey)
+}
+
+func GenerateResetToken() string {
+	b := make([]byte, 16)
+	rand.Read(b)
+	return hex.EncodeToString(b)
+}
+
+func GetJWTSecret() ([]byte, error) {
+	jwtSecret := GetEnvValue("JWT_SECRET")
+	if jwtSecret == "" {
+		return nil, errors.New("JWT_SECRET environment variable not set")
+	}
+	return []byte(jwtSecret), nil
 }

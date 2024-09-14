@@ -6,11 +6,11 @@ import (
 
 const (
 	EnvPort       string = "PORT"
-	MysqlUsername        = "MYSQL_USERNAME"
-	MysqlPassword        = "MYSQL_PASSWORD"
-	MysqlHost            = "MYSQL_HOST"
-	MysqlPort            = "MYSQL_PORT"
-	MysqlDatabase        = "MYSQL_DATABASE"
+	MysqlUsername string = "MYSQL_USERNAME"
+	MysqlPassword string = "MYSQL_PASSWORD"
+	MysqlHost     string = "MYSQL_HOST"
+	MysqlPort     string = "MYSQL_PORT"
+	MysqlDatabase string = "MYSQL_DATABASE"
 )
 
 func GetEnvValue(key string) string {

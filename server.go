@@ -1,13 +1,12 @@
 package main
 
 import (
+	"auth-go/pkg/abstract"
+	"auth-go/pkg/database"
+	"auth-go/pkg/route"
+	"auth-go/pkg/user"
 	"github.com/gofiber/fiber/v2"
 	"github.com/joho/godotenv"
-	"go-test/pkg/abstract"
-	"go-test/pkg/auth"
-	"go-test/pkg/database"
-	"go-test/pkg/route"
-	"go-test/pkg/user"
 	"log"
 )
 
@@ -31,7 +30,7 @@ func main() {
 		log.Fatal("Failed to migrate database: ", err)
 	}
 
-	auth.SetDBConnection(conn)
+	database.SetDBConnection(conn)
 
 	route.SetRoutes(Routes)
 	route.BuildRoutes(app)

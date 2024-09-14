@@ -12,6 +12,7 @@ func SetRoutes(_route []Route) {
 
 func BuildRoutes(app *fiber.App) {
 	for _, route := range routes {
-		app.Add(route.Method, string(route.Path), route.Handler)
+		handlers := append(route.Middlewares, route.Handler)
+		app.Add(route.Method, string(route.Path), handlers...)
 	}
 }
