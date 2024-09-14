@@ -6,7 +6,7 @@ import (
 
 func Login(c *fiber.Ctx) error {
 	loginData := new(LoginValidation)
-
+	c.BodyParser(loginData)
 	token, err := LoginService(loginData)
 
 	if err != nil {
@@ -14,6 +14,13 @@ func Login(c *fiber.Ctx) error {
 			"error": "Invalid credentials",
 		})
 	}
+
+	c.Cookie(&fiber.Cookie{
+		Name:     "jwt",
+		Value:    token,
+		HTTPOnly: true,
+		Secure:   true,
+	})
 
 	return c.JSON(fiber.Map{
 		"token": token,

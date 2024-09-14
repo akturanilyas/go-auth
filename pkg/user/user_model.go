@@ -15,7 +15,7 @@ type User struct {
 	LastName   string     `gorm:"size:255;not null;" json:"last_name" validate:"min=3"`
 	Email      string     `gorm:"size:255;unique;not null" json:"email" validate:"min=3"`
 	Password   string     `gorm:"size:255;not null" json:"-" validate:"min=6"`
-	ResetToken string     `gorm:"size:255;" json:"-"`
+	ResetToken *string    `gorm:"size:255;" json:"-"`
 }
 
 func (u *User) HashPassword(password string) error {
