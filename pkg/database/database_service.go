@@ -16,12 +16,13 @@ func SetDBConnection(conn *gorm.DB) {
 
 func getMySQLDatabaseConnection() (*gorm.DB, error) {
 	// TODO: Move to config
-	dsn := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s",
+	dsn := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?%s",
 		utils.GetEnvValue(utils.MysqlUsername),
 		utils.GetEnvValue(utils.MysqlPassword),
 		utils.GetEnvValue(utils.MysqlHost),
 		utils.GetEnvValue(utils.MysqlPort),
 		utils.GetEnvValue(utils.MysqlDatabase),
+		"parseTime=true",
 	)
 
 	fmt.Println(dsn)

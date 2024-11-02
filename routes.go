@@ -23,4 +23,10 @@ var Routes = []route.Route{
 		Handler:     auth.Register,
 		Middlewares: []fiber.Handler{middleware.ValidateRequest(&auth.CreateUserValidation{})},
 	},
+	{
+		Method:      http.MethodPost,
+		Path:        enums.Logout,
+		Handler:     auth.Logout,
+		Middlewares: []fiber.Handler{middleware.ValidateRequest(&auth.CreateUserValidation{})},
+	},
 }

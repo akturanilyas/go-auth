@@ -7,6 +7,7 @@ import (
 func Login(c *fiber.Ctx) error {
 	loginData := new(LoginValidation)
 	c.BodyParser(loginData)
+
 	token, err := LoginService(loginData)
 
 	if err != nil {
@@ -17,7 +18,7 @@ func Login(c *fiber.Ctx) error {
 
 	c.Cookie(&fiber.Cookie{
 		Name:     "jwt",
-		Value:    token,
+		Value:    "Bearer " + token,
 		HTTPOnly: true,
 		Secure:   true,
 	})
@@ -32,10 +33,11 @@ func Register(c *fiber.Ctx) error {
 
 	c.BodyParser(user)
 
-	newUser, err := RegisterService(user)
-	if err != nil {
-		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
-			"error": "Could not register user",
+	newUser, _ := RegisterService(user)
+
+	if newUser == nil {
+		return c.Status(fiber.StatusConflict).JSON(fiber.Map{
+			"error": "User already exists",
 		})
 	}
 
@@ -43,16 +45,12 @@ func Register(c *fiber.Ctx) error {
 }
 
 func Logout(c *fiber.Ctx) error {
-	// Implement token invalidation logic here if needed
+	c.ClearCookie("jwt")
+
 	return c.SendStatus(fiber.StatusOK)
 }
 
 func RefreshToken(c *fiber.Ctx) error {
 	// Implement token refresh logic here
-	return c.SendStatus(fiber.StatusOK)
-}
-
-func ForgotPassword(c *fiber.Ctx) error {
-	// Implement password reset logic here
 	return c.SendStatus(fiber.StatusOK)
 }

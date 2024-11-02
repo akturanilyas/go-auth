@@ -19,6 +19,7 @@ func ValidateRequest(schema interface{}) fiber.Handler {
 				"error": err.Error(),
 			})
 		}
+
 		return c.Next()
 	}
 }

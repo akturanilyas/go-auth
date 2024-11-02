@@ -4,6 +4,7 @@ import (
 	"auth-go/pkg/database"
 	"auth-go/pkg/user"
 	"auth-go/utils"
+	"fmt"
 
 	"golang.org/x/crypto/bcrypt"
 )
@@ -13,6 +14,13 @@ type User struct {
 }
 
 func RegisterService(userData *CreateUserValidation) (*user.User, error) {
+	var existingUser user.User
+
+	existUser := database.DB.Where("email = ?", userData.Email).First(&existingUser)
+	if existUser.Error == nil {
+		return nil, fmt.Errorf("user already exists")
+	}
+
 	newUser := &user.User{
 		FirstName: userData.FirstName,
 		LastName:  userData.LastName,
